@@ -4,7 +4,7 @@ VERSION =		latest
 VERSION_ALIASES =	14.10 14 latest utopic 1.0.0
 TITLE =			Seedbox
 DESCRIPTION =		rtorrent and ruTorrent (web interface)
-SOURCE_URL =		https://github.com/brmzkw/image-app-torrents
+SOURCE_URL =		https://github.com/scaleway/image-app-torrents
 IMAGE_VOLUME_SIZE =	150G
 
 ## Image tools  (https://github.com/scaleway/image-tools)
