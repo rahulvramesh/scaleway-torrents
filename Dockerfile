@@ -75,5 +75,9 @@ COPY ./patches/var/www/installer.php /var/www/
 COPY ./patches/etc/init/update-rtorrent-ip.conf /etc/init/
 
 
+# Add symlink to downloads folder in /root
+RUN ln -s /home/rtorrent/downloads /root/downloads
+
+
 # Clean rootfs from image-builder
 RUN /usr/local/sbin/builder-leave
