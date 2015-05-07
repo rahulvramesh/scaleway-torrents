@@ -34,3 +34,18 @@ Full list of commands available at: [scaleway/image-tools](https://github.com/sc
 ---
 
 A project by [![Scaleway](https://avatars1.githubusercontent.com/u/5185491?v=3&s=42)](https://www.scaleway.com/)
+
+
+---
+
+## Changelog
+
+1.0.0 (2015-05-07)
+------------------
+
+This initial version contains:
+
+* *rtorrent*, launched by *supervisord*
+* *rutorrent* (web interface) to manage torrents, with default plugins configured and useless plugins removed (*httprpc* and *rpc*)
+* a basic installer to setup credentials when *rutorrent* is accessed for the first time
+* the init job `/etc/init/update-rtorrent-ip.conf` to set server's IP address in `/home/rtorrent/.rtorrent.rc`
