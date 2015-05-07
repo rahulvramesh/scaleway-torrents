@@ -3,19 +3,27 @@ server {
     server_name localhost;
     root /var/www/rutorrent;
 
-    set $passwd_file /var/www/credentials;
+    # Force authentication
+    auth_basic "Cloud SeedBox";
+    auth_basic_user_file /var/www/credentials;
 
     # If passwd file doesn't exist, go to @noauth
-    if (!-f $passwd_file) {
+    if (!-f /var/www/credentials) {
         return 599;
     }
     error_page 599 = @noauth;
 
-    # Serve rutorrent
-    location ~ \.php$ {
-        auth_basic "Cloud SeedBox";
-        auth_basic_user_file $passwd_file;
+    # Disable authentication and return autoinstaller
+    location @noauth {
+        auth_basic off;
+        root /var/www;
+        include fastcgi_params;
+        fastcgi_param SCRIPT_FILENAME $document_root/installer.php;
+        fastcgi_pass unix:/var/run/php5-fpm.sock;
+    }
 
+    # Serve PHP files of rutorrent
+    location ~ \.php$ {
         try_files $uri =404;
         include fastcgi_params;
         fastcgi_index index.php;
@@ -23,20 +31,10 @@ server {
         fastcgi_pass unix:/var/run/php5-fpm.sock;
     }
 
+    # RPC to rtorrent
     location /RPC2 {
-        auth_basic "Cloud SeedBox";
-        auth_basic_user_file $passwd_file;
-
         include scgi_params;
         scgi_param SCRIPT_NAME /RPC2;
         scgi_pass 127.0.0.1:5000;
-    }
-
-    # Render autoinstaller
-    location @noauth {
-        root /var/www;
-        include fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME $document_root/installer.php;
-        fastcgi_pass unix:/var/run/php5-fpm.sock;
     }
 }
