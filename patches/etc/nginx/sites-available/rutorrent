@@ -36,10 +36,10 @@ server {
 
     # /home/rtorrent/downloads/ directory listing
     location /downloads {
-    	root /home/rtorrent/;
-	autoindex on;
-	autoindex_exact_size off;  # set to "on" for detailed size in bytes
-	autoindex_localtime on;    # set to "off" for GMT time
+        root /home/rtorrent/;
+        autoindex on;
+        autoindex_exact_size off;  # set to "on" for detailed size in bytes
+        autoindex_localtime on;    # set to "off" for GMT time
     }
 
     # RPC to rtorrent
