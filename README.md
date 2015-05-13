@@ -43,7 +43,7 @@ A project by [![Scaleway](https://avatars1.githubusercontent.com/u/5185491?v=3&s
 1.x.x (unreleased)
 ------------------
 
-* Increased maximum torrent file size to 10M
+* Increased maximum torrent file size to 15M
 * Added a directory listing of the downloads folder
 * Added a symlink of the downloads folder in /root
 
