@@ -4,7 +4,7 @@ server {
     root /var/www/rutorrent;
 
     # Maximum size for file upload
-    client_max_body_size 10M;
+    client_max_body_size 15M;
 
     # Force authentication
     auth_basic "Cloud SeedBox";
