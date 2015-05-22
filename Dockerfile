@@ -67,8 +67,9 @@ RUN ln -s /etc/nginx/sites-available/rutorrent /etc/nginx/sites-enabled/
 RUN chown -R www-data:www-data /var/www/
 
 
-# Installer
-COPY ./patches/var/www/installer.php /var/www/
+# Index page and installer
+COPY ./patches/var/www/index.html /var/www/
+COPY ./patches/var/www/credentials.php /var/www/
 
 
 # Update rtorrent configuration on boot

@@ -1,7 +1,7 @@
 server {
     listen 80;
     server_name localhost;
-    root /var/www/rutorrent;
+    root /var/www/;
 
     # Maximum size for file upload
     client_max_body_size 15M;
@@ -10,22 +10,23 @@ server {
     auth_basic "Cloud SeedBox";
     auth_basic_user_file /var/www/credentials;
 
-    # If passwd file doesn't exist, go to @noauth
+    # If passwd file doesn't exist, return the unused HTTP code 599 to go to
+    # @noauth
     if (!-f /var/www/credentials) {
         return 599;
     }
     error_page 599 = @noauth;
 
-    # Disable authentication and return autoinstaller
+    # Since credentials aren't setup, disable authentication and return
+    # autoinstaller
     location @noauth {
         auth_basic off;
-        root /var/www;
         include fastcgi_params;
-        fastcgi_param SCRIPT_FILENAME $document_root/installer.php;
+        fastcgi_param SCRIPT_FILENAME $document_root/credentials.php;
         fastcgi_pass unix:/var/run/php5-fpm.sock;
     }
 
-    # Serve PHP files of rutorrent
+    # Serve PHP files
     location ~ \.php$ {
         try_files $uri =404;
         include fastcgi_params;

@@ -10,7 +10,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Create your ruTorrent account</title>
+    <title>Setup your ruTorrent account</title>
     <style type="text/css">
       html {
         background-color: #ccc;
@@ -88,13 +88,13 @@
     </style>
   </head>
   <body>
-    <h1>Create your account</h1>
+    <h1>Setup your account</h1>
     <p>
-      Create an account to access your torrents.
+      Setup your account to access your torrents.
     </p>
     <p>
-      <span class="beware">Beware: your account can't be easily updated later.<br/>
-      You need to remember your login and password.</span>
+      <span class="beware">Beware: there's no easy way to reset your credentials.<br/>
+      Take care to remember your login and password!</span>
     </p>
 
     <?php
@@ -102,7 +102,7 @@
         echo '<div class="error">' . $error . '</div>';
     ?>
 
-    <form method="POST" action=".">
+    <form method="POST" action="credentials.php">
       <table>
         <tr><td><input placeholder="Login" required id="login" name="login" type="text"></td></tr>
         <tr><td><input placeholder="Password" required id="password" name="password" type="password"></td></tr>
