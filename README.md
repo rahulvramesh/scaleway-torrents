@@ -46,6 +46,8 @@ A project by [![Scaleway](https://avatars1.githubusercontent.com/u/5185491?v=3&s
 * Increased maximum torrent file size to 15M
 * Added a directory listing of the downloads folder
 * Added a symlink of the downloads folder in /root
+* Credentials are editable.
+* Index page to link to ruTorrent, download directory and account page.
 
 1.0.0 (2015-05-07)
 ------------------
