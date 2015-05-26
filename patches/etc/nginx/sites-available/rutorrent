@@ -35,12 +35,10 @@ server {
         fastcgi_pass unix:/var/run/php5-fpm.sock;
     }
 
-    # /home/rtorrent/downloads/ directory listing
+    # Use h5ai to have a pretty listing. /var/www/downloads is a symbolic link
+    # to rtorrent download directory.
     location /downloads {
-        root /home/rtorrent/;
-        autoindex on;
-        autoindex_exact_size off;  # set to "on" for detailed size in bytes
-        autoindex_localtime on;    # set to "off" for GMT time
+        index  /_h5ai/server/php/index.php;
     }
 
     # RPC to rtorrent
