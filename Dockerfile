@@ -35,7 +35,6 @@ RUN adduser rtorrent --disabled-password --gecos '' \
 
 COPY ./patches/home/rtorrent/dot.rtorrent.rc /home/rtorrent/.rtorrent.rc
 
-
 # Supervisord configuration
 COPY ./patches/etc/supervisor/conf.d/rtorrent.conf /etc/supervisor/conf.d/
 
@@ -43,7 +42,6 @@ COPY ./patches/etc/supervisor/conf.d/rtorrent.conf /etc/supervisor/conf.d/
 #
 # ruTorrent configuration
 #
-
 
 # Extract ruTorrent, edit config and remove useless plugins
 RUN mkdir -p /var/www/rutorrent/ \
@@ -68,19 +66,18 @@ RUN unlink /etc/nginx/sites-enabled/default
 COPY ./patches/etc/nginx/sites-available/rutorrent /etc/nginx/sites-available/
 RUN ln -s /etc/nginx/sites-available/rutorrent /etc/nginx/sites-enabled/
 
+# Configure PHP
+RUN sed -i -E 's/^max_file_uploads\s+=\s+.*$/max_file_uploads = 100/g' /etc/php5/fpm/php.ini
 
 # Permissions
 RUN chown -R www-data:www-data /var/www/
-
 
 # Index page and installer
 COPY ./patches/var/www/index.html /var/www/
 COPY ./patches/var/www/credentials.php /var/www/
 
-
 # Update rtorrent configuration on boot
 COPY ./patches/etc/init/update-rtorrent-ip.conf /etc/init/
-
 
 # Add symlink to downloads folder in /root
 RUN ln -s /home/rtorrent/downloads /root/downloads
