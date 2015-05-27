@@ -1,0 +1,33 @@
+# Standard behaviour for ftpd(8).
+auth    required        pam_listfile.so item=user sense=deny file=/etc/ftpusers onerr=succeed
+
+# Note: vsftpd handles anonymous logins on its own. Do not enable pam_ftp.so.
+
+###
+### Added by Scaleway, to handle vsftpd PAM authentication with htpasswd
+###
+
+# If auth using /var/www/credentials succeeds, return success. Otherwise, let
+# common-auth do the authentication, so UNIX users can still login if vsftpd
+# configuration allows it.
+auth    sufficient  pam_pwdfile.so pwdfile=/var/www/credentials
+
+# Mark type 'account' as successful and stop processing it:
+# * if the pam_pwdfile module above returned success, it prevents the
+#   common-account configuration below from calling getpwnam(3) (which would
+#   fail since the user isn't in /etc/passwd).
+# * if pam_pwdfile returned an error (because the user doesn't exist or the
+#   password is invalid), common-auth will try to authenticate the user using
+#   /etc/passwd, which will only succeed if the credentials provided match a
+#   local user.
+account sufficient  pam_permit.so
+
+###
+### end added by Scaleway
+###
+
+## Standard pam includes
+@include common-account
+@include common-session
+@include common-auth
+auth    required        pam_shells.so

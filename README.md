@@ -49,6 +49,7 @@ A project by [![Scaleway](https://avatars1.githubusercontent.com/u/5185491?v=3&s
 * Credentials are editable.
 * Index page to link to ruTorrent, download directory and account page.
 * Use [h5ai](http://larsjung.de/h5ai/) to make download directory listing pretty.
+* Configure vsftpd to manage download directory.
 
 1.0.0 (2015-05-07)
 ------------------

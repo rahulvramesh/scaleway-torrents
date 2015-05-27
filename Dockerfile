@@ -20,7 +20,8 @@ RUN apt-get -q update \
     nginx \
     php5-cli php5-fpm \
     mediainfo unzip unrar \
-    libav-tools
+    libav-tools \
+    vsftpd libpam-pwdfile
 
 
 #
@@ -84,6 +85,15 @@ COPY ./patches/etc/init/update-rtorrent-ip.conf /etc/init/
 
 # Add symlink to downloads folder in /root
 RUN ln -s /home/rtorrent/downloads /root/downloads
+
+
+#
+# vsftpd configuration
+#
+
+# PAM to make authentication using /var/www/credentials
+COPY ./patches/etc/pam.d/vsftpd /etc/pam.d/vsftpd
+COPY ./patches/etc/vsftpd.conf /etc/vsftpd.conf
 
 
 # Clean rootfs from image-builder
