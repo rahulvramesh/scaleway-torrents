@@ -7,20 +7,28 @@ auth    required        pam_listfile.so item=user sense=deny file=/etc/ftpusers 
 ### Added by Scaleway, to handle vsftpd PAM authentication with htpasswd
 ###
 
-# If auth using /var/www/credentials succeeds, return success. Otherwise, let
-# common-auth do the authentication, so UNIX users can still login if vsftpd
-# configuration allows it.
+# vsftpd, in sysdeputil.c (in vsf_sysdep_check_auth()):
+# - calls `pam_authenticate` to validate the PAM type "auth"
+# - calls `pam_acct_mgmt` to validate the PAM type "account"
+# - if SESSION_SUPPORT=YES (NO by default), calls `pam_open_session` to
+#   validate the PAM type "session"
+#
+# If one of these calls returns an error, the authentication fails.
+#
+# We want to grant access if the user is in /var/www/credentials or if the user
+# is in /etc/passwd.
+
+# If the module pam_pwdfile returns SUCCESS, stop processing the "auth" PAM
+# type and return SUCCESS. Otherwise, let common- configuration handle
+# /etc/passwd authentication.
 auth    sufficient  pam_pwdfile.so pwdfile=/var/www/credentials
 
-# Mark type 'account' as successful and stop processing it:
-# * if the pam_pwdfile module above returned success, it prevents the
-#   common-account configuration below from calling getpwnam(3) (which would
-#   fail since the user isn't in /etc/passwd).
-# * if pam_pwdfile returned an error (because the user doesn't exist or the
-#   password is invalid), common-auth will try to authenticate the user using
-#   /etc/passwd, which will only succeed if the credentials provided match a
-#   local user.
+# Make the "account" PAM type always return SUCCESS, which is not a security
+# issue since the type is only processed if the type "auth" succeeded.
 account sufficient  pam_permit.so
+
+# common- configuration grant access for the PAM type "session", so there's
+# nothing to do.
 
 ###
 ### end added by Scaleway
