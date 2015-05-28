@@ -1,7 +1,7 @@
-DOCKER_NAMESPACE =	armbuild/
+ DOCKER_NAMESPACE =	armbuild/
 NAME =			scw-app-torrents
 VERSION =		latest
-VERSION_ALIASES =	14.10 14 latest utopic 1.0.0
+VERSION_ALIASES =	14.10 14 latest utopic 1.1.0
 TITLE =			Seedbox
 DESCRIPTION =		rtorrent and ruTorrent (web interface)
 SOURCE_URL =		https://github.com/scaleway/image-app-torrents

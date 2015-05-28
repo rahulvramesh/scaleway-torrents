@@ -24,7 +24,7 @@ We use the Docker's building system and convert it at the end to a disk image th
 
 ## Changelog
 
-### 1.x.x (unreleased)
+### 1.1.0 (2015-05-28)
 
 * Increased maximum torrent file size to 15M ([#11](https://github.com/scaleway/image-app-torrents/issues/11))
 * Added a symlink of the downloads folder in /root
