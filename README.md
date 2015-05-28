@@ -22,6 +22,29 @@ We use the Docker's building system and convert it at the end to a disk image th
 
 ---
 
+## Changelog
+
+### 1.x.x (unreleased)
+
+* Increased maximum torrent file size to 15M ([#11](https://github.com/scaleway/image-app-torrents/issues/11))
+* Added a symlink of the downloads folder in /root
+* Credentials are editable ([#9](https://github.com/scaleway/image-app-torrents/issues/9))
+* Index page to link to ruTorrent, download directory and account page
+* Added a directory listing (using [h5ai](http://larsjung.de/h5ai/)) ([#3](https://github.com/scaleway/image-app-torrents/issues/3))
+* Configure vsftpd to manage download directory ([#2](https://github.com/scaleway/image-app-torrents/issues/2))
+
+### 1.0.0 (2015-05-07)
+
+This initial version contains:
+
+* *rtorrent*, launched by *supervisord*
+* *rutorrent* (web interface) to manage torrents, with default plugins configured and useless plugins removed (*httprpc* and *rpc*)
+* a basic installer to setup credentials when *rutorrent* is accessed for the first time
+* the init job `/etc/init/update-rtorrent-ip.conf` to set server's IP address in `/home/rtorrent/.rtorrent.rc`
+
+
+---
+
 ## Install
 
 Build and write the image to /dev/nbd1 (see [documentation](https://www.scaleway.com/docs/create_an_image_with_docker))
@@ -34,29 +57,3 @@ Full list of commands available at: [scaleway/image-tools](https://github.com/sc
 ---
 
 A project by [![Scaleway](https://avatars1.githubusercontent.com/u/5185491?v=3&s=42)](https://www.scaleway.com/)
-
-
----
-
-## Changelog
-
-1.x.x (unreleased)
-------------------
-
-* Increased maximum torrent file size to 15M
-* Added a directory listing of the downloads folder
-* Added a symlink of the downloads folder in /root
-* Credentials are editable.
-* Index page to link to ruTorrent, download directory and account page.
-* Use [h5ai](http://larsjung.de/h5ai/) to make download directory listing pretty.
-* Configure vsftpd to manage download directory.
-
-1.0.0 (2015-05-07)
-------------------
-
-This initial version contains:
-
-* *rtorrent*, launched by *supervisord*
-* *rutorrent* (web interface) to manage torrents, with default plugins configured and useless plugins removed (*httprpc* and *rpc*)
-* a basic installer to setup credentials when *rutorrent* is accessed for the first time
-* the init job `/etc/init/update-rtorrent-ip.conf` to set server's IP address in `/home/rtorrent/.rtorrent.rc`
