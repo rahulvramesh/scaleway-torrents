@@ -26,7 +26,7 @@ We use the Docker's building system and convert it at the end to a disk image th
 
 ### 1.2.0 (unreleased)
 
-* No entry
+* Fix vsftpd permissions, so user can download the files he uploaded.
 
 ### 1.1.0 (2015-05-28)
 
