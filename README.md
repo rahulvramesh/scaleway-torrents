@@ -1,7 +1,7 @@
 # Official Torrents image on Scaleway
 
 [![Travis](https://img.shields.io/travis/scaleway/image-app-torrents.svg)](https://travis-ci.org/scaleway/image-app-torrents)
-[![Scaleway ImageHub](https://img.shields.io/badge/ImageHub-view-ff69b4.svg)](https://hub.scaleway.com/seedbox.html)
+[![Scaleway ImageHub](https://img.shields.io/badge/ImageHub-view-ff69b4.svg)](https://hub.scaleway.com/torrents.html)
 [![Run on Scaleway](https://img.shields.io/badge/Scaleway-run-69b4ff.svg)](http://cloud.scaleway.com/#/servers/new?image=ef38e6d2-4f61-43fe-bf71-2a3258828a1a)
 
 Scripts to build the official Torrents image on Scaleway
