@@ -24,7 +24,7 @@ We use the Docker's building system and convert it at the end to a disk image th
 
 ## Changelog
 
-### 1.2.0 (unreleased)
+### 1.2.0 (2015-06-19)
 
 * Fix vsftpd permissions, so user can download the files he uploaded
 * Enable FTPS ([#14](https://github.com/scaleway/image-app-torrents/issues/14))
