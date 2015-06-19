@@ -45,10 +45,12 @@ COPY ./patches/etc/supervisor/conf.d/rtorrent.conf /etc/supervisor/conf.d/
 # ruTorrent configuration
 #
 
+# v3.7
+ENV RUTORRENT_COMMIT ac2db1536302bdc5b27aff6b15d54b0e9837fa59
 
 # Extract ruTorrent, edit config and remove useless plugins
 RUN mkdir -p /var/www/rutorrent/ \
-  && curl -sNL https://github.com/Novik/ruTorrent/archive/master.tar.gz | tar xzv --strip 1 -C /var/www/rutorrent/ \
+  && curl -sNL https://github.com/Novik/ruTorrent/archive/${RUTORRENT_COMMIT}.tar.gz | tar xzv --strip 1 -C /var/www/rutorrent/ \
   && mv /var/www/rutorrent/conf/config.php /var/www/rutorrent/conf/config_base.php \
   && rm -fr /var/www/rutorrent/plugins/httprpc /var/www/rutorrent/plugins/rpc \
   && mv /var/www/rutorrent/plugins/screenshots/conf.php /var/www/rutorrent/plugins/screenshots/conf_base.php
