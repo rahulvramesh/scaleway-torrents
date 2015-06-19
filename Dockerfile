@@ -59,8 +59,11 @@ RUN mkdir -p /var/www/rutorrent/ \
 COPY ./patches/var/www/rutorrent/conf/config.php /var/www/rutorrent/conf/
 COPY ./patches/var/www/rutorrent/plugins/screenshots/conf.php /var/www/rutorrent/plugins/screenshots/
 
+
 # Install h5ai
-RUN curl -L http://release.larsjung.de/h5ai/h5ai-0.27.0.zip -o /tmp/h5ai.zip \
+ENV H5AI_VERSION 0.27.0
+
+RUN curl -L http://release.larsjung.de/h5ai/h5ai-$H5AI_VERSION.zip -o /tmp/h5ai.zip \
   && unzip /tmp/h5ai.zip -d /var/www/ \
   && rm -f /tmp/h5ai.zip \
   && ln -s /home/rtorrent/downloads /var/www/
