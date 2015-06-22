@@ -24,6 +24,10 @@ We use the Docker's building system and convert it at the end to a disk image th
 
 ## Changelog
 
+### 1.3.0 (unreleased)
+
+* No entry
+
 ### 1.2.0 (2015-06-19)
 
 * Bumped rutorrent to 3.7
