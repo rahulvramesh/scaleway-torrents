@@ -26,7 +26,7 @@ We use the Docker's building system and convert it at the end to a disk image th
 
 ### 1.3.0 (unreleased)
 
-* No entry
+* Create a `public` folder without authentication ([#13](https://github.com/scaleway/image-app-torrents/issues/13))
 
 ### 1.2.0 (2015-06-19)
 
