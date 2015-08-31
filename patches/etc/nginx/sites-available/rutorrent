@@ -44,7 +44,7 @@ server {
     # Public folder without authentication
     location /downloads/public {
         autoindex on;
-	auth_basic off;
+        auth_basic off;
     }
 
     # RPC to rtorrent
