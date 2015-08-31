@@ -28,7 +28,7 @@ RUN apt-get -q update \
 # Rtorrent configuration
 #
 RUN adduser rtorrent --disabled-password --gecos '' \
-  && mkdir -p /home/rtorrent/downloads \
+  && mkdir -p /home/rtorrent/downloads/public \
   && mkdir -p /home/rtorrent/sessions \
   && mkdir -p /home/rtorrent/watch \
   && chown -R rtorrent:rtorrent /home/rtorrent/

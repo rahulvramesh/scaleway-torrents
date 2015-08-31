@@ -41,6 +41,12 @@ server {
         index  /_h5ai/server/php/index.php;
     }
 
+    # Public folder without authentication
+    location /downloads/public {
+        autoindex on;
+	auth_basic off;
+    }
+
     # RPC to rtorrent
     location /RPC2 {
         include scgi_params;
