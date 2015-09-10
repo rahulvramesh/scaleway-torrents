@@ -5,8 +5,11 @@ VERSION_ALIASES =	1.2.0
 TITLE =			Seedbox
 DESCRIPTION =		rtorrent and ruTorrent (web interface)
 SOURCE_URL =		https://github.com/scaleway/image-app-torrents
-IMAGE_VOLUME_SIZE =	150G
 SHELL_DOCKER_OPTS ?=	-p 80:80
+
+IMAGE_VOLUME_SIZE =	150G
+IMAGE_BOOTSCRIPT =	stable
+IMAGE_NAME =		Torrents 1.2.0
 
 
 ## Image tools  (https://github.com/scaleway/image-tools)
