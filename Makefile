@@ -4,7 +4,7 @@ VERSION =		latest
 VERSION_ALIASES =	1.2.0
 TITLE =			Seedbox
 DESCRIPTION =		rtorrent and ruTorrent (web interface)
-SOURCE_URL =		https://github.com/scaleway/image-app-torrents
+SOURCE_URL =		https://github.com/scaleway-community/scaleway-torrents
 SHELL_DOCKER_OPTS ?=	-p 80:80
 
 IMAGE_VOLUME_SIZE =	150G
