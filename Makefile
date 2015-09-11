@@ -1,5 +1,4 @@
- DOCKER_NAMESPACE =	armbuild/
-NAME =			scw-app-torrents
+NAME =			torrents
 VERSION =		latest
 VERSION_ALIASES =	1.2.0
 TITLE =			Seedbox
