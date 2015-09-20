@@ -100,6 +100,11 @@ RUN ln -s /home/rtorrent/downloads /root/downloads
 COPY ./patches/etc/pam.d/vsftpd /etc/pam.d/vsftpd
 COPY ./patches/etc/vsftpd.conf /etc/vsftpd.conf
 
+#
+# php-fpm configuration
+#
+COPY ./patches/etc/php5/fpm/conf.d/50-scaleway.ini /etc/php5/fpm/conf.d/50-scaleway.ini
+
 
 # Clean rootfs from image-builder
 RUN /usr/local/sbin/builder-leave
