@@ -99,6 +99,7 @@ RUN ln -s /home/rtorrent/downloads /root/downloads
 # PAM to make authentication using /var/www/credentials
 COPY ./patches/etc/pam.d/vsftpd /etc/pam.d/vsftpd
 COPY ./patches/etc/vsftpd.conf /etc/vsftpd.conf
+COPY ./patches/etc/init/vsftpd-keys.conf /etc/init/vsftpd-keys.conf
 
 #
 # php-fpm configuration

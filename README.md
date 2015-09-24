@@ -28,7 +28,7 @@ We use the Docker's building system and convert it at the end to a disk image th
 
 * Create a `public` folder without authentication ([#13](https://github.com/scaleway-community/scaleway-torrents/issues/13))
 * Fix: maximum torrent file size patch was not applied ([#22](https://github.com/scaleway-community/scaleway-torrents/issues/22))
-
+* Fix: create SSL certificates for vsftpd ([#21](https://github.com/scaleway-community/scaleway-torrents/issues/21))
 
 ### 1.2.0 (2015-06-19)
 
