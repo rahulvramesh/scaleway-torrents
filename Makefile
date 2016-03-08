@@ -5,6 +5,7 @@ TITLE =			Seedbox
 DESCRIPTION =		rtorrent and ruTorrent (web interface)
 SOURCE_URL =		https://github.com/scaleway-community/scaleway-torrents
 SHELL_DOCKER_OPTS ?=	-p 80:80
+DEFAULT_IMAGE_ARCH ?=	x86_64
 
 IMAGE_VOLUME_SIZE =	150G
 IMAGE_BOOTSCRIPT =	stable
@@ -16,6 +17,4 @@ all:	docker-rules.mk
 docker-rules.mk:
 	wget -qO - http://j.mp/scw-builder | bash
 -include docker-rules.mk
-
-
 ## Here you can add custom commands and overrides

@@ -1,10 +1,18 @@
 ## -*- docker-image-name: "scaleway/torrents:latest" -*-
-FROM scaleway/ubuntu:trusty
+FROM scaleway/ubuntu:amd64-trusty
+# following 'FROM' lines are used dynamically thanks do the image-builder
+# which dynamically update the Dockerfile if needed.
+#FROM scaleway/ubuntu:armhf-trusty       # arch=armv7l
+#FROM scaleway/ubuntu:arm64-trusty       # arch=arm64
+#FROM scaleway/ubuntu:i386-trusty        # arch=i386
+#FROM scaleway/ubuntu:mips-trusty        # arch=mips
+
+
 MAINTAINER Scaleway <opensource@scaleway.com> (@scaleway)
 
 
 # Prepare rootfs for image-builder
-RUN /usr/local/sbin/builder-enter
+RUN /usr/local/sbin/scw-builder-enter
 
 
 # Enable multiverse packages
@@ -34,11 +42,11 @@ RUN adduser rtorrent --disabled-password --gecos '' \
   && chown -R rtorrent:rtorrent /home/rtorrent/
 
 
-COPY ./patches/home/rtorrent/dot.rtorrent.rc /home/rtorrent/.rtorrent.rc
+COPY ./overlay/home/rtorrent/dot.rtorrent.rc /home/rtorrent/.rtorrent.rc
 
 
 # Supervisord configuration
-COPY ./patches/etc/supervisor/conf.d/rtorrent.conf /etc/supervisor/conf.d/
+COPY ./overlay/etc/supervisor/conf.d/rtorrent.conf /etc/supervisor/conf.d/
 
 
 #
@@ -56,8 +64,8 @@ RUN mkdir -p /var/www/rutorrent/ \
   && mv /var/www/rutorrent/plugins/screenshots/conf.php /var/www/rutorrent/plugins/screenshots/conf_base.php
 
 
-COPY ./patches/var/www/rutorrent/conf/config.php /var/www/rutorrent/conf/
-COPY ./patches/var/www/rutorrent/plugins/screenshots/conf.php /var/www/rutorrent/plugins/screenshots/
+COPY ./overlay/var/www/rutorrent/conf/config.php /var/www/rutorrent/conf/
+COPY ./overlay/var/www/rutorrent/plugins/screenshots/conf.php /var/www/rutorrent/plugins/screenshots/
 
 
 # Install h5ai
@@ -71,7 +79,7 @@ RUN curl -L http://release.larsjung.de/h5ai/h5ai-$H5AI_VERSION.zip -o /tmp/h5ai.
 
 # Configure nginx
 RUN unlink /etc/nginx/sites-enabled/default
-COPY ./patches/etc/nginx/sites-available/rutorrent /etc/nginx/sites-available/
+COPY ./overlay/etc/nginx/sites-available/rutorrent /etc/nginx/sites-available/
 RUN ln -s /etc/nginx/sites-available/rutorrent /etc/nginx/sites-enabled/
 
 
@@ -80,12 +88,12 @@ RUN chown -R www-data:www-data /var/www/
 
 
 # Index page and installer
-COPY ./patches/var/www/index.html /var/www/
-COPY ./patches/var/www/credentials.php /var/www/
+COPY ./overlay/var/www/index.html /var/www/
+COPY ./overlay/var/www/credentials.php /var/www/
 
 
 # Update rtorrent configuration on boot
-COPY ./patches/etc/init/update-rtorrent-ip.conf /etc/init/
+COPY ./overlay/etc/init/update-rtorrent-ip.conf /etc/init/
 
 
 # Add symlink to downloads folder in /root
@@ -97,15 +105,15 @@ RUN ln -s /home/rtorrent/downloads /root/downloads
 #
 
 # PAM to make authentication using /var/www/credentials
-COPY ./patches/etc/pam.d/vsftpd /etc/pam.d/vsftpd
-COPY ./patches/etc/vsftpd.conf /etc/vsftpd.conf
-COPY ./patches/etc/init/vsftpd-keys.conf /etc/init/vsftpd-keys.conf
+COPY ./overlay/etc/pam.d/vsftpd /etc/pam.d/vsftpd
+COPY ./overlay/etc/vsftpd.conf /etc/vsftpd.conf
+COPY ./overlay/etc/init/vsftpd-keys.conf /etc/init/vsftpd-keys.conf
 
 #
 # php-fpm configuration
 #
-COPY ./patches/etc/php5/fpm/conf.d/50-scaleway.ini /etc/php5/fpm/conf.d/50-scaleway.ini
+COPY ./overlay/etc/php5/fpm/conf.d/50-scaleway.ini /etc/php5/fpm/conf.d/50-scaleway.ini
 
 
 # Clean rootfs from image-builder
-RUN /usr/local/sbin/builder-leave
+RUN /usr/local/sbin/scw-builder-leave
