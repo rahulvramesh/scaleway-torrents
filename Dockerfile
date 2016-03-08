@@ -20,26 +20,33 @@ RUN sed -i 's/universe/universe multiverse/' /etc/apt/sources.list
 
 
 # Install packages
-RUN apt-get -q update \
-  && apt-get --force-yes -y -qq upgrade \
-  && apt-get install -y \
-    supervisor \
-    rtorrent \
-    nginx \
-    php5-cli php5-fpm \
-    mediainfo unzip unrar \
-    libav-tools \
-    vsftpd libpam-pwdfile
+RUN apt-get -q update                   \
+ && apt-get --force-yes -y -qq upgrade  \
+ && apt-get install -y -q               \
+      supervisor                        \
+      rtorrent                          \
+      nginx                             \
+      php5-cli php5-fpm                 \
+      mediainfo unzip unrar             \
+      libav-tools                       \
+      vsftpd libpam-pwdfile             \
+ && apt-get clean
+
+
+# Software versions
+ENV RUTORRENT_COMMIT=ac2db1536302bdc5b27aff6b15d54b0e9837fa59  \
+    RUTORRENT_VERSION=3.7                                      \
+    H5AI_VERSION=0.27.0
 
 
 #
 # Rtorrent configuration
 #
-RUN adduser rtorrent --disabled-password --gecos '' \
-  && mkdir -p /home/rtorrent/downloads/public \
-  && mkdir -p /home/rtorrent/sessions \
-  && mkdir -p /home/rtorrent/watch \
-  && chown -R rtorrent:rtorrent /home/rtorrent/
+RUN adduser rtorrent --disabled-password --gecos ''  \
+ && mkdir -p /home/rtorrent/downloads/public         \
+ && mkdir -p /home/rtorrent/sessions                 \
+ && mkdir -p /home/rtorrent/watch                    \
+ && chown -R rtorrent:rtorrent /home/rtorrent/
 
 
 COPY ./overlay/home/rtorrent/dot.rtorrent.rc /home/rtorrent/.rtorrent.rc
@@ -53,15 +60,15 @@ COPY ./overlay/etc/supervisor/conf.d/rtorrent.conf /etc/supervisor/conf.d/
 # ruTorrent configuration
 #
 
-# v3.7
-ENV RUTORRENT_COMMIT ac2db1536302bdc5b27aff6b15d54b0e9837fa59
 
 # Extract ruTorrent, edit config and remove useless plugins
 RUN mkdir -p /var/www/rutorrent/ \
-  && curl -sNL https://github.com/Novik/ruTorrent/archive/${RUTORRENT_COMMIT}.tar.gz | tar xzv --strip 1 -C /var/www/rutorrent/ \
-  && mv /var/www/rutorrent/conf/config.php /var/www/rutorrent/conf/config_base.php \
-  && rm -fr /var/www/rutorrent/plugins/httprpc /var/www/rutorrent/plugins/rpc \
-  && mv /var/www/rutorrent/plugins/screenshots/conf.php /var/www/rutorrent/plugins/screenshots/conf_base.php
+  && curl -sNL https://github.com/Novik/ruTorrent/archive/${RUTORRENT_COMMIT}.tar.gz  \
+     | tar xzv --strip 1 -C /var/www/rutorrent/                                       \
+  && mv /var/www/rutorrent/conf/config.php /var/www/rutorrent/conf/config_base.php    \
+  && rm -fr /var/www/rutorrent/plugins/httprpc /var/www/rutorrent/plugins/rpc         \
+  && mv /var/www/rutorrent/plugins/screenshots/conf.php                               \
+        /var/www/rutorrent/plugins/screenshots/conf_base.php
 
 
 COPY ./overlay/var/www/rutorrent/conf/config.php /var/www/rutorrent/conf/
@@ -69,7 +76,6 @@ COPY ./overlay/var/www/rutorrent/plugins/screenshots/conf.php /var/www/rutorrent
 
 
 # Install h5ai
-ENV H5AI_VERSION 0.27.0
 
 RUN curl -L http://release.larsjung.de/h5ai/h5ai-$H5AI_VERSION.zip -o /tmp/h5ai.zip \
   && unzip /tmp/h5ai.zip -d /var/www/ \
