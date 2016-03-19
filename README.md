@@ -1,24 +1,12 @@
-# Official Torrents image on Scaleway
+# Torrents image on Scaleway
 
-[![Travis](https://img.shields.io/travis/scaleway-community/scaleway-torrents.svg)](https://travis-ci.org/scaleway-community/scaleway-torrents)
+[![Build Status](https://travis-ci.org/scaleway-community/scaleway-torrents.svg?branch=master)](https://travis-ci.org/scaleway-community/scaleway-torrents)
 [![Scaleway ImageHub](https://img.shields.io/badge/ImageHub-view-ff69b4.svg)](https://hub.scaleway.com/torrents.html)
-[![Run on Scaleway](https://img.shields.io/badge/Scaleway-run-69b4ff.svg)](http://cloud.scaleway.com/#/servers/new?image=ef38e6d2-4f61-43fe-bf71-2a3258828a1a)
+[![Run on Scaleway](https://img.shields.io/badge/Scaleway-run-69b4ff.svg)](http://cloud.scaleway.com/#/servers/new?image=4e18f1fc-0b66-4692-a38d-bfa4c94f29de)
 
-Scripts to build the official Torrents image on Scaleway
+Launch your Torrents app on Scaleway servers in minutes.
 
-This image is built using [Image Tools](https://github.com/scaleway/image-tools) and depends on the official [Ubuntu](https://github.com/scaleway/image-ubuntu) image.
-
-<img src="http://upload.wikimedia.org/wikipedia/en/2/2f/Bittorrent_7.2_Logo.png" width="500px" />
-
-
----
-
-**This image is meant to be used on a C1 server.**
-
-We use the Docker's building system and convert it at the end to a disk image that will boot on real servers without Docker. Note that the image is still runnable as a Docker container for debug or for inheritance.
-
-[More info](https://github.com/scaleway/image-tools)
-
+<img src="http://upload.wikimedia.org/wikipedia/en/2/2f/Bittorrent_7.2_Logo.png" width="400px" />
 
 ---
 
@@ -58,14 +46,13 @@ This initial version contains:
 
 ---
 
-## Install
+## How to hack
 
-Build and write the image to /dev/nbd1 (see [documentation](https://www.scaleway.com/docs/create-an-image-with-docker/))
+**This image is meant to be used on a Scaleway server.**
 
-    $ make install
+We use the Docker's building system and convert it at the end to a disk image that will boot on real servers without Docker. Note that the image is still runnable as a Docker container for debug or for inheritance.
 
-Full list of commands available at: [scaleway/image-tools](https://github.com/scaleway/image-tools/#commands)
-
+[More info](https://github.com/scaleway/image-builder)
 
 ---
 
