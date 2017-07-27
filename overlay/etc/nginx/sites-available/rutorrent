@@ -38,7 +38,7 @@ server {
     # Use h5ai to have a pretty listing. /var/www/downloads is a symbolic link
     # to rtorrent download directory.
     location /downloads {
-        index  /_h5ai/server/php/index.php;
+        index  /_h5ai/public/index.php;
     }
 
     # Public folder without authentication

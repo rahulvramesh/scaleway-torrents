@@ -36,7 +36,7 @@ RUN apt-get -q update                   \
 # Software versions
 ENV RUTORRENT_COMMIT=ac2db1536302bdc5b27aff6b15d54b0e9837fa59  \
     RUTORRENT_VERSION=3.7                                      \
-    H5AI_VERSION=0.27.0
+    H5AI_VERSION=0.29.0
 
 
 #
@@ -77,7 +77,7 @@ COPY ./overlay/var/www/rutorrent/plugins/screenshots/conf.php /var/www/rutorrent
 
 # Install h5ai
 
-RUN curl -L http://release.larsjung.de/h5ai/h5ai-$H5AI_VERSION.zip -o /tmp/h5ai.zip \
+RUN curl -L https://release.larsjung.de/h5ai/h5ai-$H5AI_VERSION.zip -o /tmp/h5ai.zip \
   && unzip /tmp/h5ai.zip -d /var/www/ \
   && rm -f /tmp/h5ai.zip \
   && ln -s /home/rtorrent/downloads /var/www/
