@@ -1,3 +1,9 @@
+##
+## Any change to .rtorrent.rc will be discarded. Edit rtorrent.rc.template instead.
+## scw-gen-rtorrent-rc copies /home/rtorrent/rtorrent.rc.template to /home/rtorrent/.rtorrent.rc
+## and replaces the public ip address announced to the tracker.
+##
+
 system.umask.set = 022
 directory = /home/rtorrent/downloads
 session = /home/rtorrent/sessions
@@ -5,7 +11,7 @@ set_max_file_size = 536870912000
 schedule = watch_directory,0,10,"load_start=/home/rtorrent/watch/*.torrent"
 
 ## Network
-ip = 0.0.0.0
+ip = 0.0.0.0	# this line will be patched by scw-gen-torrent-rc
 port_range = 10090-10999
 port_random = yes
 

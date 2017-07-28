@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout /etc/ssl/private/vsftpd.pem -out /etc/ssl/private/vsftpd.pem -subj '/CN=www.scaleway.com/O=Scaleway/C=FR'
+
+systemctl disable init-vsftpd

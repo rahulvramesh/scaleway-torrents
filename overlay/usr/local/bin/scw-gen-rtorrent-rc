@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+public_ip="$(scw-metadata --cached PUBLIC_IP_ADDRESS)"
+
+cd ~rtorrent
+sed -e "s|^ip\s*=.*\$|ip = ${public_ip}|" rtorrent.rc.template > .rtorrent.rc
