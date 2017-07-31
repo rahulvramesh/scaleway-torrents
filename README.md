@@ -8,6 +8,28 @@ Launch your Torrents app on Scaleway servers in minutes.
 
 <img src="http://upload.wikimedia.org/wikipedia/en/2/2f/Bittorrent_7.2_Logo.png" width="400px" />
 
+
+# Quickstart
+## Installation
+
+Once your instance is started, open your brower at `http://your_ip/`, and type in your new user and password.
+
+That's all !
+
+## Resetting your user and password
+Inside a shell, run:
+```sh
+$ scw-change-torrent-password your_user
+```
+type in your new password, and you're done !
+
+# Internals
+You can attach to the rtorrent tty using:
+```sh
+screen /run/rtorrent/tty
+```
+Use `CTRL+a d` to detach from the tty.
+
 ---
 
 ## Changelog

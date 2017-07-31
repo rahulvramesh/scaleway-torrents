@@ -93,7 +93,7 @@
       Setup your account to access your torrents.
     </p>
     <p>
-      <span class="beware">Beware: there's no easy way to reset your credentials.<br/>
+      <span class="beware">Beware: resetting your credential requires ssh access.<br/>
       Take care to remember your login and password!</span>
     </p>
 
