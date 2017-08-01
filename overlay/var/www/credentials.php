@@ -1,6 +1,6 @@
 <?php
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $passwd = $_POST['login'] . ':' . crypt($_POST['password']);
+    $passwd = $_POST['login'] . ':' . crypt($_POST['password'], '$5$rounds=2000$' . hash("sha256", random_bytes(256)) . '$');
     file_put_contents('/var/www/credentials', $passwd);
     header('Location: /');
     die('Reload the page');
@@ -10,7 +10,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Setup your ruTorrent account</title>
+    <title>Setup your seedbox account</title>
     <style type="text/css">
       html {
         background-color: #ccc;

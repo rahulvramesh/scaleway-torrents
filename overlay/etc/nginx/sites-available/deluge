@@ -35,8 +35,14 @@ server {
         fastcgi_pass unix:/run/php/php7.0-fpm.sock;
     }
 
+    # Serve the deluge web UI
+    location /deluge {
+        include proxy_params;
+        proxy_pass http://127.0.0.1:8112/;
+    }
+
     # Use h5ai to have a pretty listing. /var/www/downloads is a symbolic link
-    # to rtorrent download directory.
+    # to the download directory.
     location /downloads {
         index  /_h5ai/public/index.php;
     }
@@ -45,12 +51,5 @@ server {
     location /downloads/public {
         autoindex on;
         auth_basic off;
-    }
-
-    # RPC to rtorrent
-    location /RPC2 {
-        include scgi_params;
-        scgi_param SCRIPT_NAME /RPC2;
-        scgi_pass 127.0.0.1:5000;
     }
 }

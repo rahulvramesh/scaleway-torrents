@@ -1,0 +1,13 @@
+[Unit]
+Description=deluge web UI firewall
+After=network.target
+Before=deluge-web.service
+
+[Service]
+# deluge-web does not feature choosing an interface for now
+ExecStartPre=/sbin/iptables -A INPUT -p tcp --dport 8112 -i eth0 -j DROP
+RemainAfterExit=yes
+Type=simple
+
+[Install]
+WantedBy=multi-user.target

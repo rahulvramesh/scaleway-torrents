@@ -1,0 +1,12 @@
+[Unit]
+Description=deluge web UI
+After=network.target
+
+[Service]
+User=torrent
+Group=torrent
+ExecStart=/usr/bin/deluge-web -b deluge/
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
