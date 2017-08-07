@@ -1,0 +1,10 @@
+[Unit]
+Description=generate vsftpd key on first boot
+Before=vsftpd.service
+
+[Service]
+ExecStart=/usr/local/bin/scw-init-vsftpd
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target

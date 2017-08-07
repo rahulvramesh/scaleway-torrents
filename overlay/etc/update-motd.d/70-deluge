@@ -1,0 +1,6 @@
+#!/bin/bash
+
+set -e
+
+echo "Open http://$(/usr/local/bin/scw-metadata --cached PUBLIC_IP_ADDRESS)/ to manage your instance."
+echo "The default password for deluge is empty, just click the login button."

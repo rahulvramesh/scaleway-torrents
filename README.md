@@ -8,9 +8,31 @@ Launch your Torrents app on Scaleway servers in minutes.
 
 <img src="http://upload.wikimedia.org/wikipedia/en/2/2f/Bittorrent_7.2_Logo.png" width="400px" />
 
+
+# Quickstart
+## Installation
+
+Once your instance is started, open your brower at `http://your_ip/`, and type in your new user and password.
+The default password of your torrent client is empty, just click the `login` button.
+
+That's all !
+
+## Resetting your main user and password
+Inside a shell, run:
+```sh
+$ scw-change-torrent-password your_user
+```
+type in your new password, and you're done !
+
+You can remove `~torrent/.config/deluge/web.conf` to reset your deluge password.
+
 ---
 
 ## Changelog
+
+### 1.4.0 (unreleased)
+* Switch to deluge
+* Add a password change script
 
 ### 1.3.0 (unreleased)
 

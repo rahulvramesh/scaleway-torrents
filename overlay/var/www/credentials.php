@@ -1,6 +1,6 @@
 <?php
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $passwd = $_POST['login'] . ':' . crypt($_POST['password']);
+    $passwd = $_POST['login'] . ':' . crypt($_POST['password'], '$5$rounds=2000$' . hash("sha256", random_bytes(256)) . '$');
     file_put_contents('/var/www/credentials', $passwd);
     header('Location: /');
     die('Reload the page');
@@ -10,7 +10,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Setup your ruTorrent account</title>
+    <title>Setup your seedbox account</title>
     <style type="text/css">
       html {
         background-color: #ccc;
@@ -93,7 +93,7 @@
       Setup your account to access your torrents.
     </p>
     <p>
-      <span class="beware">Beware: there's no easy way to reset your credentials.<br/>
+      <span class="beware">Beware: resetting your credential requires ssh access.<br/>
       Take care to remember your login and password!</span>
     </p>
 

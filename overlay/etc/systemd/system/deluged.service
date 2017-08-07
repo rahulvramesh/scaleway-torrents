@@ -1,0 +1,12 @@
+[Unit]
+Description=deluged torrent daemon
+After=network.target
+
+[Service]
+User=torrent
+Group=torrent
+ExecStart=/usr/bin/deluged -d -L INFO
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
