@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+chown -R www-data:www-data /var/www/
+chown -R torrent:torrent /home/torrent/
+
+systemctl disable init-chown

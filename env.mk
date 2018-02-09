@@ -1,0 +1,9 @@
+IMAGE_NAME =	torrents
+IMAGE_VERSION =	latest
+IMAGE_VERSION_ALIASES =	1.4.0
+IMAGE_TITLE = Seedbox
+IMAGE_DESCRIPTION = deluge and deluge-web (web interface)
+IMAGE_DOC_URL = https://www.scaleway.com/docs/how-to-use-the-torrents-instant-apps/
+IMAGE_SOURCE_URL = https://github.com/scaleway-community/scaleway-torrents
+IMAGE_VENDOR_URL = http://deluge-torrent.org/
+IMAGE_BOOTSCRIPT = mainline 4.4

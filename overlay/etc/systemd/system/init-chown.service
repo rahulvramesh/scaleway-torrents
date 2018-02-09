@@ -1,0 +1,10 @@
+[Unit]
+Description=Chown files/dirs for torrent/www-data
+Before=network.target
+
+[Service]
+ExecStart=/usr/local/bin/scw-init-chown
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target

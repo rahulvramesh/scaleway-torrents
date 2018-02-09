@@ -52,11 +52,7 @@ COPY ./overlay/ /
 RUN adduser torrent --disabled-password --gecos ''  \
  && mkdir -p /home/torrent/downloads/public         \
  && mkdir -p /home/torrent/sessions                 \
- && mkdir -p /home/torrent/watch                    \
- && chown -R torrent:torrent /home/torrent/
-
-# Permissions
-RUN chown -R www-data:www-data /var/www/
+ && mkdir -p /home/torrent/watch
 
 # Clean rootfs from image-builder
 RUN /usr/local/sbin/scw-builder-leave
