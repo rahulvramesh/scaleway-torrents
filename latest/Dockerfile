@@ -13,12 +13,14 @@ RUN /usr/local/sbin/scw-builder-enter
 RUN sed -i 's/universe/universe multiverse/' /etc/apt/sources.list
 
 # Install packages
-RUN apt-get -q update                   \
- && apt-get --force-yes -y -qq upgrade  \
+RUN apt-get -qq update                 \
+ && apt-get -y -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confnew upgrade  \
  && apt-get install -y -q               \
       deluged deluge-web                \
       nginx unzip                       \
-      php7.0-cli php7.0-fpm             \
+      php7.[0-9]+                       \
+      php7.[0-9]+-cli                   \
+      php7.[0-9]+-fpm                   \
       geoip-database                    \
       vsftpd libpam-pwdfile             \
       apache2-utils                     \
